@@ -122,7 +122,7 @@ def main():
                             if int(request) == 1 or int(request) == 2 or int(request) == 3 or int(request) == 4 or int(request) == 5 or int(request) == 6 or int(request) == 7 or int(request) == 8 or int(request) == 9 or int(request) == 10:
                                 if int(request) > maximumGames:
                                     write_msg(event.user_id, "Выберите существующие число !")
-                                if float(str(shop[int(request)-1]).split("|")[1]) > 1):
+                                if float(str(shop[int(request)-1]).split("|")[1]) > float(str(shop[int(request)-1]).split("|")[2]):
                                     print(str(float(str(float(str(shop[int(request)-1]).split("|")[1])))
                                     write_msg(event.user_id, "Игра: {} \n Цена Ру: {} руб.".format(str(shop[int(request)-1]).split("|")[0], str(round(float(str(shop[int(request)-1]).split("|")[1])))))
                                     stepsController.setStep(userID=event.user_id, step=0)
