@@ -61,6 +61,33 @@ def findElement(reqw, el, thingOfFind):
 
     return soup.find_all(el, class_=thingOfFind)
 
+def findElementTT(reqw, el, thingOfFind):
+    header = {
+        'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+        'accept-encoding': 'gzip, deflate, br',
+        'accept-language': 'ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7,pt-BR,br;q=0.6',
+        'cache-control': 'no-cache',
+        'dnt': '1',
+        'pragma': 'no-cache',
+        'sec-fetch-mode': 'navigate',
+        'sec-fetch-site': 'none',
+        'sec-fetch-user': '?1',
+        'upgrade-insecure-requests': '1',
+        'user-agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.100 Safari/537.36'}  # Обеспечивает доступ к сайту
+
+    # Test
+    # reqw = "/ru-ru/p/battlefield-1/bwttw53m5b98"
+    source_url = "https://www.microsoft.com" + str(reqw).replace(" ", "_").replace("'", "%27")
+
+    respw = requests.get(source_url, timeout=10, headers=header)
+    soup = BeautifulSoup(respw.text, 'html.parser')
+
+    #print(respw.text + ("/n" * 3))  # output the html of the page
+    #print(soup.find_all("h3", class_=thingOfFind)[0:maximumGames].text)
+
+    return soup.find_all(el, class_=thingOfFind)
+
+
 def findElementAf(reqw, el, thingOfFind):
     header = {
         'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
@@ -146,7 +173,7 @@ def gamesInfoPage(userID, req):
         if i == maximumGames:
             break
         text += "{})".format(i+1) + " " + findElement(req, "h3", gameNameTag)[i].text + "\n"
-        tt = findElement(req, "href", thingOfFind)[i]
+        tt = findElement(req, "div", thingOfFind)[i]
         root_childsTT = [e.text for e in tt.children if e.name is not None]
         aa = findElementAf(req, "div", pi-price-text)[i]
         root_childsRU = [e.text for e in aa.children if e.name is not None]
