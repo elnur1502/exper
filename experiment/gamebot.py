@@ -61,7 +61,7 @@ def findElement(reqw, el, thingOfFind):
 
     return soup.find_all(el, class_=thingOfFind)
 
-def findElementAf(tt, el, m-channel-placement-item):
+def findElementAf(reqw, el, thingOfFind):
     header = {
         'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
         'accept-encoding': 'gzip, deflate, br',
