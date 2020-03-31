@@ -61,7 +61,7 @@ def findElement(reqw, el, thingOfFind):
 
     return soup.find_all(el, class_=thingOfFind)
 
-tt = findElement(req, "href", m-channel-placement-item)[i]
+        tt = findElement(req, "href", m-channel-placement-item)[i]
         root_childsTT = [e.text for e in tt.children if e.name is not None]
 
 
