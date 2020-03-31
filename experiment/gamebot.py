@@ -75,9 +75,6 @@ def findElementAf(reqw, el, thingOfFind):
         'upgrade-insecure-requests': '1',
         'user-agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.100 Safari/537.36'}  # Обеспечивает доступ к сайту
 
-tt = findElement(req, "href", m-channel-placement-item)[i]
-root_childsTT = [e.text for e in tt.children if e.name is not None]
-
     # Test
     # reqw = "/ru-ru/p/battlefield-1/bwttw53m5b98"
     source_url = "https://www.microsoft.com" + str(reqw).replace(" ", "_").replace("'", "%27")
@@ -149,6 +146,8 @@ def gamesInfoPage(userID, req):
         if i == maximumGames:
             break
         text += "{})".format(i+1) + " " + findElement(req, "h3", gameNameTag)[i].text + "\n"
+        tt = findElement(req, "div", m-channel-placement-item)[i]
+        root_childsTT = [e.text for e in tt.children if e.name is not None]
         aa = findElementAf(req, "div", pi-price-text)[i]
         root_childsRU = [e.text for e in aa.children if e.name is not None]
         bb = findElementAU(req, "div", gamePriceTag)[i]
