@@ -124,11 +124,11 @@ def main():
                                     write_msg(event.user_id, "Выберите существующие число !")
                                 if float(str(shop[int(request)-1]).split("|")[1]) > float(str(shop[int(request)-1]).split("|")[2]):
                                     print(str(float(str(float(str(shop[int(request)-1]).split("|")[1])))
-                                    write_msg(event.user_id, "Игра: {} \n Цена Ру: {} руб.".format(str(shop[int(request)-1]).split("|")[0], str(round(float(str(shop[int(request)-1]).split("|")[1])))))
+                                    write_msg(event.user_id, "Игра: {} \n Цена Ру: {} руб. \n {}".format(str(shop[int(request)-1]).split("|")[0], str(round(float(str(shop[int(request)-1]).split("|")[1]))), str(round(float(str(shop[int(request)-1]).split("|")[2])))))
                                     stepsController.setStep(userID=event.user_id, step=0)
-                                    shop .clear()
+                                    shop .clear()  
                                 else:
-                                    write_msg(event.user_id, "Игра: {} \n Цена Ру: {} руб.".format(str(shop[int(request)-1]).split("|")[0], str(round(float(str(shop[int(request)-1]).split("|")[1])))))
+                                    write_msg(event.user_id, "Игра: {} \n Цена Ру: {} руб. \n {}".format(str(shop[int(request)-1]).split("|")[0], str(round(float(str(shop[int(request)-1]).split("|")[1]))), str(round(float(str(shop[int(request)-1]).split("|")[2])))))
                                     stepsController.setStep(userID=event.user_id, step=0)
                                     shop .clear()  
                             if request == "0":
