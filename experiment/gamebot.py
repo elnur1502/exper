@@ -61,10 +61,6 @@ def findElement(reqw, el, thingOfFind):
 
     return soup.find_all(el, class_=thingOfFind)
 
-        tt = findElement(req, "href", m-channel-placement-item)[i]
-        root_childsTT = [e.text for e in tt.children if e.name is not None]
-
-
 def findElementAf(tt, el, m-channel-placement-item):
     header = {
         'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
@@ -78,6 +74,9 @@ def findElementAf(tt, el, m-channel-placement-item):
         'sec-fetch-user': '?1',
         'upgrade-insecure-requests': '1',
         'user-agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.100 Safari/537.36'}  # Обеспечивает доступ к сайту
+
+        tt = findElement(req, "href", m-channel-placement-item)[i]
+        root_childsTT = [e.text for e in tt.children if e.name is not None]
 
     # Test
     # tt = "/ru-ru/p/battlefield-1/bwttw53m5b98"
