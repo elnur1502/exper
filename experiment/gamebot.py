@@ -79,8 +79,8 @@ tt = findElement(req, "href", m-channel-placement-item)[i]
 root_childsTT = [e.text for e in tt.children if e.name is not None]
 
     # Test
-    # tt = "/ru-ru/p/battlefield-1/bwttw53m5b98"
-    source_url = "https://www.microsoft.com" + str(tt).replace(" ", "_").replace("'", "%27")
+    # reqw = "/ru-ru/p/battlefield-1/bwttw53m5b98"
+    source_url = "https://www.microsoft.com" + str(reqw).replace(" ", "_").replace("'", "%27")
 
     respw = requests.get(source_url, timeout=10, headers=header)
     soup = BeautifulSoup(respw.text, 'html.parser')
