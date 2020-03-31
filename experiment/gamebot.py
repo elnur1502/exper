@@ -75,8 +75,8 @@ def findElementAf(reqw, el, thingOfFind):
         'upgrade-insecure-requests': '1',
         'user-agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.100 Safari/537.36'}  # Обеспечивает доступ к сайту
 
-        tt = findElement(req, "href", m-channel-placement-item)[i]
-        root_childsTT = [e.text for e in tt.children if e.name is not None]
+tt = findElement(req, "href", m-channel-placement-item)[i]
+root_childsTT = [e.text for e in tt.children if e.name is not None]
 
     # Test
     # tt = "/ru-ru/p/battlefield-1/bwttw53m5b98"
