@@ -80,8 +80,8 @@ def findElementBF(soup, el, thingOfFind):
     # Test
     # reqw = "Metro Exodus - Sam's story"
     
-    respw1 = requests.get(soup, timeout=10, headers=header)
-    soup1 = BeautifulSoup(soup.text, 'lxml')
+    respw1 = requests.get(respw, timeout=10, headers=header)
+    soup1 = BeautifulSoup(respw1.text, 'lxml')
 
     #print(respw.text + ("/n" * 3))  # output the html of the page
     #divs = soup.find_all('div', class_='m-channel-placement-item')[0:maximumGames].text
