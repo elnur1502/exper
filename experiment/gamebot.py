@@ -1,4 +1,4 @@
-﻿import vk_api
+import vk_api
 import random
 import requests
 import Gamebot.Steps as steps
@@ -25,7 +25,6 @@ dob = 2 # множитель (заменимый)
 
 dollar = 79
 peco = 1.23
-real = 18
 
 market = Market.Market()
 shop = []
@@ -35,11 +34,12 @@ def getShortLink(link):
 def write_msg(user_id, message):
     vk.method('messages.send',
               {'user_id': user_id, 'message': message, 'random_id': random.randint(0, 9999999), 'peer_id': user_id})
+
 def findElement(reqw, el, thingOfFind):
     header = {
         'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
         'accept-encoding': 'gzip, deflate, br',
-        'accept-language': 'ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7,pt-BR,br;q=0.6',
+        'accept-language': 'ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7',
         'cache-control': 'no-cache',
         'dnt': '1',
         'pragma': 'no-cache',
@@ -62,27 +62,115 @@ def findElement(reqw, el, thingOfFind):
     return soup.find_all(el, class_=thingOfFind)
 
 
+def findElementBF(reqw, el, thingOfFind):
+    header = {
+        'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+        'accept-encoding': 'gzip, deflate, br',
+        'accept-language': 'ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7',
+        'cache-control': 'no-cache',
+        'dnt': '1',
+        'pragma': 'no-cache',
+        'sec-fetch-mode': 'navigate',
+        'sec-fetch-site': 'none',
+        'sec-fetch-user': '?1',
+        'upgrade-insecure-requests': '1',
+        'user-agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.100 Safari/537.36'}  # Обеспечивает доступ к сайту
+
+    # Test
+    # reqw = "Metro Exodus - Sam's story"
+    
+    respw1 = requests.get(soup, timeout=10, headers=header)
+    soup1 = BeautifulSoup(soup.text, 'lxml')
+
+    #print(respw.text + ("/n" * 3))  # output the html of the page
+    #divs = soup.find_all('div', class_='m-channel-placement-item')[0:maximumGames].text
+    divs = soup1.find_all('div', class_='m-channel-placement-item')[0:maximumGames].text
+    for div in divs:
+        a = div.find('a').get('href')
+        link = 'https://microsoft.com' + a
+    return link
+
+def findElementAF(reqw, el, thingOfFind):
+    header = {
+        'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+        'accept-encoding': 'gzip, deflate, br',
+        'accept-language': 'ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7',
+        'cache-control': 'no-cache',
+        'dnt': '1',
+        'pragma': 'no-cache',
+        'sec-fetch-mode': 'navigate',
+        'sec-fetch-site': 'none',
+        'sec-fetch-user': '?1',
+        'upgrade-insecure-requests': '1',
+        'user-agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.100 Safari/537.36'}  # Обеспечивает доступ к сайту
+
+    # Test
+    # link = "microsoft.com/ru-ru/p/grand-theft-auto-v/bpj686w6s0nh"
+    link = "https://www.microsoft.com" + str(a).replace(" ", "_").replace("'", "%27")
+
+    respw2 = requests.get(link, timeout=10, headers=header)
+    soup2 = BeautifulSoup(respw.text, 'html.parser')
+
+    #print(respw.text + ("/n" * 3))  # output the html of the page
+    #print(soup.find_all("div", id='ProductPrice_productPrice_PriceContainer').text)
+    prices = soup2.find_all("div", id='ProductPrice_productPrice_PriceContainer')[0:maximumGames].text
+
+    return soup2.find_all(el, class_=thingOfFind)
+
+def findElementAU(reqw, el, thingOfFind):
+    header = {
+        'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+        'accept-encoding': 'gzip, deflate, br',
+        'accept-language': 'ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7',
+        'cache-control': 'no-cache',
+        'dnt': '1',
+        'pragma': 'no-cache',
+        'sec-fetch-mode': 'navigate',
+        'sec-fetch-site': 'none',
+        'sec-fetch-user': '?1',
+        'upgrade-insecure-requests': '1',
+        'user-agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.100 Safari/537.36'}  # Обеспечивает доступ к сайту
+
+    # Test
+    # reqw = "Metro Exodus - Sam's story"
+    source_url = "https://www.microsoft.com/es-ar/search/shop/games?q=" + str(reqw).replace(" ", "_").replace("'", "%27")
+
+    respw = requests.get(source_url, timeout=10, headers=header)
+    soup = BeautifulSoup(respw.text, 'html.parser')
+
+    #print(respw.text + ("/n" * 3))  # output the html of the page
+    #print(soup.find_all("h3", class_=thingOfFind)[0:maximumGames].text)
+
+    return soup.find_all(el, class_=thingOfFind)
+
+
 def gamesInfoPage(userID, req):
     text = "Выберите одну игру из предложенных вариантов (Напишите ее номер): \n"
     for i in range(len(findElement(req, "h3", gameNameTag))):
         if i == maximumGames:
             break
         text += "{})".format(i+1) + " " + findElement(req, "h3", gameNameTag)[i].text + "\n"
-        aa = findElementAf(req, "div", pi-price-text)[i]
+        aa = findElementAF("div", id='ProductPrice_productPrice_PriceContainer')[i]
         root_childsRU = [e.text for e in aa.children if e.name is not None]
+        bb = findElementAU(req, "div", gamePriceTag)[i]
+        root_childsAU = [e.text for e in bb.children if e.name is not None]
         a = 0
+        b = 0
         if len(root_childsRU) < 4:
             a = 0
         else:
             a = 4
-        
-       
-        if (str(root_childsRU[b]).find("Сейчас") != -1):
-            root_childsRU[a] = str(root_childsRU[a]).split("Текущая цена")[1].split("\n")[0]
-       
-        print("AA: {} LEN: {}/{}".format(root_childsRU, len(root_childsRU)))
+        if len(root_childsAU) < 4:
+            b = 0
+        else:
+            b = 4
+        if (str(root_childsAU[b]).find("Ahora") != -1):
+            root_childsAU[b] = str(root_childsAU[b]).split("Ahora")[1].split("\n")[0]
+        if (str(root_childsRU[b]).find("текущая цена") != -1):
+            root_childsRU[b] = str(root_childsRU[b]).split("текущая цена")[1].split("\n")[0]
+        print("AA: {} BB: {} LEN: {}/{}".format(root_childsRU, root_childsAU, len(root_childsRU), len(root_childsAU)))
         #print(root_childs[0])
-        #print(str(findElement(req, "div", gamePriceTag)[i].text).replace("\n", "").replace("", "").replace("  ","").replace("\r", "").replace("USD$", "").replace("+", "").replace("Бесплатно", "0").replace(",","."))
+        
         try:
             w = str(root_childsRU[a].replace("\n", "").replace(" ", "").replace("  ","").replace("\r", "").replace("USD$", "").replace("+", "").replace("Бесплатно", "0"))
             if str(root_childsRU[a].replace("\n", "").replace(" ", "").replace("  ","").replace("\r", "").replace("USD$", "").replace("+", "").replace("Бесплатно", "0")).find(",") != -1:
@@ -90,8 +178,22 @@ def gamesInfoPage(userID, req):
             priceRU = (float(float(w) * dollar))
         except:
             priceRU = 0
+        try:
+            s = str(root_childsAU[b].replace("\n", "").replace(" ", "").replace("  ", "").replace("\r", "").replace("$",
+                                                                                                                    "").replace(
+                ".", "").replace(",00", "").replace("+", "").replace("Gratis", "0"))
+            if str(root_childsAU[b].replace("\n", "").replace(" ", "").replace("  ", "").replace("\r", "").replace("$",
+                                                                                                                   "").replace(
+                    ".", "").replace(",00", "").replace("+", "").replace("Gratis", "0")).find(",") != -1:
+                s = str(
+                    root_childsAU[b].replace("\n", "").replace(" ", "").replace("  ", "").replace("\r", "").replace("$",
+                                                                                                                    "").replace(
+                        ".", "").replace(",00", "").replace("+", "").replace("Gratis", "0")).split(",")[0]
+            priceAU = (float(float(s) * 2))
+        except:
+           priceAU = 0
 
-        shop.append(findElement(req, "h3", gameNameTag)[i].text + "|" + str(priceRU) + "|" + str(getShortLink("https://www.microsoft.com/ru-ru/search/shop/games?q=" +str(findElement(req, "div", "m-channel-placement-item")[i].findChildren()[0].get('href')))).replace("https://", "") + "|" + str(getShortLink("https://www.microsoft.com/es-ar/search/shop/games?q=" + str(findElementAU(req, "div", "m-channel-placement-item")[i].findChildren()[0].get('href')))).replace("https://", "") + "|" + str(getShortLink("https://www.microsoft.com/pt-BR/search/shop/games?q=" + str(findElementBR(req, "div", "m-channel-placement-item")[i].findChildren()[0].get('href')))).replace("https://", "")) # ['name|priceRU|priceAU|priceBR|linkRU|linkAU|linkBR', ...]
+        shop.append(findElement(req, "h3", gameNameTag)[i].text + "|" + str(priceRU) + "|" + str(priceAU)  + "|" + str(getShortLink("https://www.microsoft.com/ru-ru/search/shop/games?q=" +str(findElement(req, "div", "m-channel-placement-item")[i].findChildren()[0].get('href')))).replace("https://", "") + "|" + str(getShortLink("https://www.microsoft.com/es-ar/search/shop/games?q=" + str(findElementAU(req, "div", "m-channel-placement-item")[i].findChildren()[0].get('href')))).replace("https://", "")) # ['name|priceRU|priceAU|linkRU|linkAU', ...]
     print(shop) #  + "|" + findElement(req, "div", "m-channel-placement-item")[i].findChildren("div")[0].get('href')
     #market.addUser(userID=userID, shop=shop)
     text += "\n 0) Выбрать другую игру."
@@ -123,14 +225,14 @@ def main():
                                 if int(request) > maximumGames:
                                     write_msg(event.user_id, "Выберите существующие число !")
                                 if float(str(shop[int(request)-1]).split("|")[1]) > float(str(shop[int(request)-1]).split("|")[2]):
-                                    print(str(float(str(float(str(shop[int(request)-1]).split("|")[1])))
-                                    write_msg(event.user_id, "Игра: {} \n Цена Ру: {} руб. \n {}".format(str(shop[int(request)-1]).split("|")[0], str(round(float(str(shop[int(request)-1]).split("|")[1]))), str(round(float(str(shop[int(request)-1]).split("|")[2])))))
+                                    print(str(float(str(shop[int(request)-1]).split("|")[2])) + "|" + str(float(str(shop[int(request)-1]).split("|")[1])))
+                                    write_msg(event.user_id, "Игра: {} \n Цена: {} руб. \n Напишите сюда чтобы купить - {}".format(str(shop[int(request)-1]).split("|")[0], str(round(float(str(shop[int(request)-1]).split("|")[2]))), str(getShortLink("https://vk.com/elnursh15"))))
                                     stepsController.setStep(userID=event.user_id, step=0)
-                                    shop .clear()  
+                                    shop .clear()
                                 else:
-                                    write_msg(event.user_id, "Игра: {} \n Цена Ру: {} руб. \n {}".format(str(shop[int(request)-1]).split("|")[0], str(round(float(str(shop[int(request)-1]).split("|")[1]))), str(round(float(str(shop[int(request)-1]).split("|")[2])))))
+                                    write_msg(event.user_id, "Игра: {} \n Цена: {} руб. \n Напишите сюда чтобы купить - {}".format(str(shop[int(request)-1]).split("|")[0], str(round(float(str(shop[int(request)-1]).split("|")[2]))), str(getShortLink("https://vk.com/elnursh15"))))
                                     stepsController.setStep(userID=event.user_id, step=0)
-                                    shop .clear()  
+                                    shop .clear()
                             if request == "0":
                                 write_msg(event.user_id, "Вы вернулись назад !")
                                 shop.clear()
