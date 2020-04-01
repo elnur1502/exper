@@ -59,11 +59,11 @@ def findElement(reqw, el, thingOfFind):
 
     #print(respw.text + ("/n" * 3))  # output the html of the page
     #print(soup.find_all("h3", class_=thingOfFind)[0:maximumGames].text)
-
+    print(soup.find_all("h3", class_=thingOfFind)[0:maximumGames].text)
     return soup.find_all(el, class_=thingOfFind)
 
 
-def findElementBF(reqw, el, thingOfFind):
+def findElementBF(soup, el, thingOfFind):
     header = {
         'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
         'accept-encoding': 'gzip, deflate, br',
