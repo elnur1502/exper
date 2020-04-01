@@ -105,7 +105,7 @@ def findElementAF(reqw, el, thingOfFind):
 
     # Test
     # link = "microsoft.com/ru-ru/p/grand-theft-auto-v/bpj686w6s0nh"
-    link = "microsoft.com" + links
+    link = "microsoft.com" + str(links)
     
     respw2 = requests.get(link, timeout=10, headers=header)
     soup2 = BeautifulSoup(respw.text, 'html.parser')
