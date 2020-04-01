@@ -87,8 +87,8 @@ def findElementBF(reqw, el, thingOfFind):
     #divs = soup.find_all('div', class_='m-channel-placement-item')[0:maximumGames].text
     divs = soup1.find_all('div', class_='m-channel-placement-item')[0:maximumGames].text
     for div in divs:
-        a = div.find('a').get('href')
-        link = 'https://microsoft.com' + a
+        ab = div.find('a').get('href')
+        link = 'https://microsoft.com' + ab
     return link
 
 def findElementAF(reqw, el, thingOfFind):
@@ -107,7 +107,7 @@ def findElementAF(reqw, el, thingOfFind):
 
     # Test
     # link = "microsoft.com/ru-ru/p/grand-theft-auto-v/bpj686w6s0nh"
-    link = ("https://www.microsoft.com" + a).replace(" ", "_").replace("'", "%27")
+    
 
     respw2 = requests.get(link, timeout=10, headers=header)
     soup2 = BeautifulSoup(respw.text, 'html.parser')
