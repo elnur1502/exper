@@ -87,6 +87,7 @@ def findElementBF(reqw, el, thingOfFind):
     #divs = soup.find_all('div', class_='m-channel-placement-item')[0:maximumGames].text
     divs = soup1.find_all('div', class_='m-channel-placement-item')[0:maximumGames].text
     links = divs.find('a').get('href').text
+    return links
     return divs
 
 def findElementAF(links, el, thingOfFind):
