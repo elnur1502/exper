@@ -36,7 +36,7 @@ def write_msg(user_id, message):
     vk.method('messages.send',
               {'user_id': user_id, 'message': message, 'random_id': random.randint(0, 9999999), 'peer_id': user_id})
 
-def findElement(reqw, el, thingOfFind):
+def findName(reqw, el, thingOfFind):
     header = {
         'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
         'accept-encoding': 'gzip, deflate, br',
@@ -80,7 +80,9 @@ def findElementBF(soup, el, thingOfFind):
     # Test
     # reqw = "Metro Exodus - Sam's story"
     
-    respw1 = requests.get(respw, timeout=10, headers=header)
+    source_url = "https://www.microsoft.com/ru-ru/search/shop/games?q=" + str(reqw).replace(" ", "_").replace("'", "%27")
+    
+    respw1 = requests.get(source_url, timeout=10, headers=header)
     soup1 = BeautifulSoup(respw1.text, 'lxml')
 
     #print(respw.text + ("/n" * 3))  # output the html of the page
@@ -146,10 +148,10 @@ def findElementAU(reqw, el, thingOfFind):
 
 def gamesInfoPage(userID, req):
     text = "Выберите одну игру из предложенных вариантов (Напишите ее номер): \n"
-    for i in range(len(findElement(req, "h3", gameNameTag))):
+    for i in range(len(findName(req, "h3", gameNameTag))):
         if i == maximumGames:
             break
-        text += "{})".format(i+1) + " " + findElement(req, "h3", gameNameTag)[i].text + "\n"
+        text += "{})".format(i+1) + " " + findName(req, "h3", gameNameTag)[i].text + "\n"
         aa = findElementAF(req, "div", priceTag)[i]
         root_childsRU = [e.text for e in aa.children if e.name is not None]
         bb = findElementAU(req, "div", gamePriceTag)[i]
@@ -193,8 +195,8 @@ def gamesInfoPage(userID, req):
         except:
            priceAU = 0
 
-        shop.append(findElement(req, "h3", gameNameTag)[i].text + "|" + str(priceRU) + "|" + str(priceAU)  + "|" + str(getShortLink("https://www.microsoft.com/ru-ru/search/shop/games?q=" +str(findElement(req, "div", "m-channel-placement-item")[i].findChildren()[0].get('href')))).replace("https://", "") + "|" + str(getShortLink("https://www.microsoft.com/es-ar/search/shop/games?q=" + str(findElementAU(req, "div", "m-channel-placement-item")[i].findChildren()[0].get('href')))).replace("https://", "")) # ['name|priceRU|priceAU|linkRU|linkAU', ...]
-    print(shop) #  + "|" + findElement(req, "div", "m-channel-placement-item")[i].findChildren("div")[0].get('href')
+        shop.append(findName(req, "h3", gameNameTag)[i].text + "|" + str(priceRU) + "|" + str(priceAU)  + "|" + str(getShortLink("https://www.microsoft.com/ru-ru/search/shop/games?q=" +str(findname(req, "div", "m-channel-placement-item")[i].findChildren()[0].get('href')))).replace("https://", "") + "|" + str(getShortLink("https://www.microsoft.com/es-ar/search/shop/games?q=" + str(findElementAU(req, "div", "m-channel-placement-item")[i].findChildren()[0].get('href')))).replace("https://", "")) # ['name|priceRU|priceAU|linkRU|linkAU', ...]
+    print(shop) #  + "|" + findName(req, "div", "m-channel-placement-item")[i].findChildren("div")[0].get('href')
     #market.addUser(userID=userID, shop=shop)
     text += "\n 0) Выбрать другую игру."
     print(req)
@@ -249,7 +251,7 @@ def main():
                         stepsController.setStep(userID=event.user_id, step=1)
                         #print(market.getUser(userID=event.user_id))
 
-                        #print(event.user_id, findElement(request, gameNameTag)[0].text)
+                        #print(event.user_id, findName(request, gameNameTag)[0].text)
 
 
     print("End.")
