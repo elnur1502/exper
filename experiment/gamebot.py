@@ -19,6 +19,7 @@ search_link = "https://www.microsoft.com/ru-ru/search?q="
 
 gameNameTag = "c-subheading-6"
 gamePriceTag = "c-price"
+priceTag = "pi-price-text"
 
 maximumGames = 5 # максимальное кол-во игр выводимых в сообщении
 dob = 2 # множитель (заменимый)
