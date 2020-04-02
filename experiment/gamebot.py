@@ -117,8 +117,8 @@ def findElementBFB(divs, class_="c-group f-wrap-items context-list-page"):
     dives = soup13.find_all("div", class_="m-channel-placement-item")[0:maximumGames]
     for div in dives:
         links = div.find('a').get('href')
-        linkPage = 'https://coinmarketcap.com' + links
-        linkPage.append(links)
+        linkes = 'microsoft.com' + links
+        linkPage.append(linkes)
     
     return soup13.find_all("div", class_="m-channel-placement-item")
  
@@ -139,7 +139,7 @@ def findElementAF(dives , linkPage, href):
 
     # Test
     # linkPage = "microsoft.com/ru-ru/p/grand-theft-auto-v/bpj686w6s0nh"
-    linkPage = "microsoft.com/" + str(links).replace(" ", "_").replace("'", "%27")
+    
     
     respw2 = requests.get(linkPage, timeout=10, headers=header)
     soup2 = BeautifulSoup(respw2.text, 'html.parser')
