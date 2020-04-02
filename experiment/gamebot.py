@@ -140,7 +140,7 @@ def findElementAF(dives , linkPage, href):
     # Test
     # linkPage = "microsoft.com/ru-ru/p/grand-theft-auto-v/bpj686w6s0nh"
     
-    
+    linkPage = "microsoft.com" + links
     respw2 = requests.get(linkPage, timeout=10, headers=header)
     soup2 = BeautifulSoup(respw2.text, 'html.parser')
 
