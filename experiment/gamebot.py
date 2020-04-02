@@ -91,7 +91,7 @@ def findElementBF(reqw, el, thingOfFind):
     
     for div in divs:
          links = divs.find('a').get('href').text
-         linkPage = "microsoft.com" + str(links)
+         linkPage = "microsoft.com" + links.replace(" ", "_").replace("'", "%27")
          linkPage.append(links)
     return linkPage
     
@@ -112,7 +112,7 @@ def findElementAF(links, el, thingOfFind):
 
     # Test
     # link = "microsoft.com/ru-ru/p/grand-theft-auto-v/bpj686w6s0nh"
-    linkPage = "microsoft.com" + str(links).replace(" ", "_").replace("'", "%27")
+    linkPage = "microsoft.com" + links.replace(" ", "_").replace("'", "%27")
     
     respw2 = requests.get(linkPage, timeout=10, headers=header)
     soup2 = BeautifulSoup(respw.text, 'html.parser')
