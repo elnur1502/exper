@@ -89,10 +89,10 @@ def findElementBF(reqw, el, thingOfFind):
     #divs = soup.find_all('div', class_='m-channel-placement-item')[0:maximumGames].text
     divs = soup1.find_all('div', class_='m-channel-placement-item')[0:maximumGames].text
     
-    return soup1.find_all(el, class_=thingOfFind)
+    return soup1.find_all('div', class_='m-channel-placement-item')
 
 
-def findElementBFA(divs, el, thingOfFind):
+def findElementBFA(divs, class_='m-channel-placement-item'):
     header = {
         'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
         'accept-encoding': 'gzip, deflate, br',
@@ -117,11 +117,11 @@ def findElementBFA(divs, el, thingOfFind):
     #divs = soup.find_all('div', class_='m-channel-placement-item')[0:maximumGames].text
     links = divs.find_all('a').get('href')[0:maximumGames].text
     
-    return divs.find_all(el, class_=thingOfFind)
+    return divs.find_all('a').get('href')
 
     
 
-def findElementAF(links, el, thingOfFind):
+def findElementAF(links):
     header = {
         'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
         'accept-encoding': 'gzip, deflate, br',
@@ -137,16 +137,16 @@ def findElementAF(links, el, thingOfFind):
 
     # Test
     # linkPage = "microsoft.com/ru-ru/p/grand-theft-auto-v/bpj686w6s0nh"
-    linkPage = "microsoft.com/" + links.replace(" ", "_").replace("'", "%27")
+    linkPage = "microsoft.com/" + str(links).replace(" ", "_").replace("'", "%27")
     
     respw2 = requests.get(linkPage, timeout=10, headers=header)
-    soup2 = BeautifulSoup(respw.text, 'html.parser')
+    soup2 = BeautifulSoup(respw2.text, 'html.parser')
 
     #print(respw.text + ("/n" * 3))  # output the html of the page
     #print(soup.find_all("div", id='ProductPrice_productPrice_PriceContainer').text)
     prices = soup2.find_all("div", id='ProductPrice_productPrice_PriceContainer')[0:maximumGames].text
 
-    return soup2.find_all(el, class_=thingOfFind)
+    return soup2.find_all("div", id='ProductPrice_productPrice_PriceContainer')
 
 def findElementAU(reqw, el, thingOfFind):
     header = {
