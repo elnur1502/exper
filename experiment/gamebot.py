@@ -115,7 +115,7 @@ def findElementBFA(divs, class_='m-channel-placement-item'):
 
     #print(respw.text + ("/n" * 3))  # output the html of the page
     #divs = soup.find_all('div', class_='m-channel-placement-item')[0:maximumGames].text
-    links = divs.find_all('a').get('href')[0:maximumGames].text
+    links = divs.find('a').get('href')[0:maximumGames]
     
     return divs.find_all('a').get('href')
 
