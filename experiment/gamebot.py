@@ -89,11 +89,36 @@ def findElementBF(reqw, el, thingOfFind):
     #divs = soup.find_all('div', class_='m-channel-placement-item')[0:maximumGames].text
     divs = soup1.find_all('div', class_='m-channel-placement-item')[0:maximumGames].text
     
-    for div in divs:
-         links = divs.find('a').get('href').text
-         linkPage = "microsoft.com" + links.replace(" ", "_").replace("'", "%27")
-         linkPage.append(links)
-    return linkPage
+    return soup1.find_all(el, class_=thingOfFind)
+
+
+def findElementBFA(divs, el, thingOfFind):
+    header = {
+        'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+        'accept-encoding': 'gzip, deflate, br',
+        'accept-language': 'ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7',
+        'cache-control': 'no-cache',
+        'dnt': '1',
+        'pragma': 'no-cache',
+        'sec-fetch-mode': 'navigate',
+        'sec-fetch-site': 'none',
+        'sec-fetch-user': '?1',
+        'upgrade-insecure-requests': '1',
+        'user-agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.100 Safari/537.36'}  # Обеспечивает доступ к сайту
+
+    # Test
+    # reqw = "Metro Exodus - Sam's story"
+    
+    
+    respw1 = requests.get(divs, timeout=10, headers=header)
+    soup1 = BeautifulSoup(respw1.text, 'lxml')
+
+    #print(respw.text + ("/n" * 3))  # output the html of the page
+    #divs = soup.find_all('div', class_='m-channel-placement-item')[0:maximumGames].text
+    links = divs.find_all('a').get('href')[0:maximumGames].text
+    
+    return divs.find_all(el, class_=thingOfFind)
+
     
 
 def findElementAF(links, el, thingOfFind):
@@ -111,7 +136,7 @@ def findElementAF(links, el, thingOfFind):
         'user-agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.100 Safari/537.36'}  # Обеспечивает доступ к сайту
 
     # Test
-    # link = "microsoft.com/ru-ru/p/grand-theft-auto-v/bpj686w6s0nh"
+    # linkPage = "microsoft.com/ru-ru/p/grand-theft-auto-v/bpj686w6s0nh"
     linkPage = "microsoft.com/" + links.replace(" ", "_").replace("'", "%27")
     
     respw2 = requests.get(linkPage, timeout=10, headers=header)
