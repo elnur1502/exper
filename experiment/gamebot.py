@@ -121,7 +121,7 @@ def findElementBFA(divs, class_='m-channel-placement-item'):
 
     
 
-def findElementAF(links):
+def findElementAF(links, "div", id='ProductPrice_productPrice_PriceContainer'):
     header = {
         'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
         'accept-encoding': 'gzip, deflate, br',
@@ -181,7 +181,7 @@ def gamesInfoPage(userID, req):
         if i == maximumGames:
             break
         text += "{})".format(i+1) + " " + findName(req, "h3", gameNameTag)[i].text + "\n"
-        aa = findElementAF(req, "div", priceTag)[i]
+        aa = findElementAF(links,"div", priceTag)[i]
         root_childsRU = [e.text for e in aa.children if e.name is not None]
         bb = findElementAU(req, "div", gamePriceTag)[i]
         root_childsAU = [e.text for e in bb.children if e.name is not None]
