@@ -148,7 +148,7 @@ def findElementBFA(dives, class_="m-channel-placement-item"):
 
     
 
-def findElementAF("a", links, href):
+def findElementAF(dives , links, href):
     header = {
         'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
         'accept-encoding': 'gzip, deflate, br',
