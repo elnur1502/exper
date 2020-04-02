@@ -63,7 +63,7 @@ def findName(reqw, el, thingOfFind):
     return soup.find_all(el, class_=thingOfFind)
 
 
-def findElementBF(soup, el, thingOfFind):
+def findElementBF(reqw, el, thingOfFind):
     header = {
         'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
         'accept-encoding': 'gzip, deflate, br',
@@ -88,9 +88,12 @@ def findElementBF(soup, el, thingOfFind):
     #print(respw.text + ("/n" * 3))  # output the html of the page
     #divs = soup.find_all('div', class_='m-channel-placement-item')[0:maximumGames].text
     divs = soup1.find_all('div', class_='m-channel-placement-item')[0:maximumGames].text
+    
+    for div in divs:
     links = divs.find('a').get('href').text
-    return links
-    return divs
+    linkPage.append(links)
+    return linkPage
+    
 
 def findElementAF(links, el, thingOfFind):
     header = {
