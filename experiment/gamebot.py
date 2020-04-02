@@ -115,15 +115,38 @@ def findElementBFB(divs, class_="c-group f-wrap-items context-list-page"):
     #print(respw.text + ("/n" * 3))  # output the html of the page
     #divs = soup.find_all('div', class_='m-channel-placement-item')[0:maximumGames]
     dives = soup13.find_all("div", class_="m-channel-placement-item")[0:maximumGames]
-    for div in dives:
-        links = div.find('a').get('href')
-        linkes = 'microsoft.com' + links
-        linkPage.append(linkes)
-    
+   
     return soup13.find_all("div", class_="m-channel-placement-item")
+
+
+def findElementBFA(dives, class_="m-channel-placement-item"):
+    header = {
+        'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+        'accept-encoding': 'gzip, deflate, br',
+        'accept-language': 'ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7',
+        'cache-control': 'no-cache',
+        'dnt': '1',
+        'pragma': 'no-cache',
+        'sec-fetch-mode': 'navigate',
+        'sec-fetch-site': 'none',
+        'sec-fetch-user': '?1',
+        'upgrade-insecure-requests': '1',
+        'user-agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.100 Safari/537.36'}  # Обеспечивает доступ к сайту
+
+    # Test
+    # reqw = "Metro Exodus - Sam's story"
+    
+    respw12 = requests.get(dives, timeout=10, headers=header)
+    soup12 = BeautifulSoup(respw12.text, 'lxml')
+
+    #print(respw.text + ("/n" * 3))  # output the html of the page
+    #divs = soup.find_all('div', class_='m-channel-placement-item')[0:maximumGames]
+    links = soup13.find("a").get("href")
+   
+    return soup13.find("a").get("href")
  
 
-def findElementAF(dives , linkPage, href):
+def findElementAF(dives , links, href):
     header = {
         'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
         'accept-encoding': 'gzip, deflate, br',
@@ -140,7 +163,7 @@ def findElementAF(dives , linkPage, href):
     # Test
     # linkPage = "microsoft.com/ru-ru/p/grand-theft-auto-v/bpj686w6s0nh"
     
-    linkPage = "microsoft.com" + links
+    linkPage = "microsoft.com" + str(links)
     respw2 = requests.get(linkPage, timeout=10, headers=header)
     soup2 = BeautifulSoup(respw2.text, 'html.parser')
 
