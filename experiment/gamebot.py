@@ -86,8 +86,8 @@ def findElementBF(reqw, el, thingOfFind):
     soup1 = BeautifulSoup(respw1.text, 'lxml')
 
     #print(respw.text + ("/n" * 3))  # output the html of the page
-    #divs = soup.find_all('div', class_='m-channel-placement-item')[0:maximumGames].text
-    divs = soup1.find_all("div", class_="m-channel-placement-item")[0:maximumGames].text
+    #divs = soup.find_all('div', class_='m-channel-placement-item')[0:maximumGames]
+    divs = soup1.find_all("div", class_="m-channel-placement-item")[0:maximumGames]
     
     return soup1.find_all("div", class_="m-channel-placement-item")
 
@@ -144,7 +144,7 @@ def findElementAF(divs, links, href):
 
     #print(respw.text + ("/n" * 3))  # output the html of the page
     #print(soup.find_all("div", id='ProductPrice_productPrice_PriceContainer').text)
-    prices = soup2.find_all("div", id="ProductPrice_productPrice_PriceContainer")[0:maximumGames].text
+    prices = soup2.find_all("div", id="ProductPrice_productPrice_PriceContainer")
 
     return soup2.find_all("div", id="ProductPrice_productPrice_PriceContainer")
 
