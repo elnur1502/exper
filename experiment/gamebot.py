@@ -90,8 +90,9 @@ def findElementBF(reqw, el, thingOfFind):
     divs = soup1.find_all('div', class_='m-channel-placement-item')[0:maximumGames].text
     
     for div in divs:
-    links = divs.find('a').get('href').text
-    linkPage.append(links)
+         links = divs.find('a').get('href').text
+         linkPage = "microsoft.com" + str(links)
+         linkPage.append(links)
     return linkPage
     
 
