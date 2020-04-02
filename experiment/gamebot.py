@@ -112,7 +112,7 @@ def findElementAF(links, el, thingOfFind):
 
     # Test
     # link = "microsoft.com/ru-ru/p/grand-theft-auto-v/bpj686w6s0nh"
-    linkPage = "microsoft.com" + links.replace(" ", "_").replace("'", "%27")
+    linkPage = "microsoft.com/" + links.replace(" ", "_").replace("'", "%27")
     
     respw2 = requests.get(linkPage, timeout=10, headers=header)
     soup2 = BeautifulSoup(respw.text, 'html.parser')
