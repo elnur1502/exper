@@ -121,7 +121,7 @@ def findElementBFA(divs, class_='m-channel-placement-item'):
 
     
 
-def findElementAF(links, "div", id='ProductPrice_productPrice_PriceContainer'):
+def findElementAF(links, "div", priceTag):
     header = {
         'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
         'accept-encoding': 'gzip, deflate, br',
