@@ -181,7 +181,7 @@ def gamesInfoPage(userID, req):
         if i == maximumGames:
             break
         text += "{})".format(i+1) + " " + findName(req, "h3", gameNameTag)[i].text + "\n"
-        aa = findElementAF(prices, "div" priceTag)[i]
+        aa = findElementAF(prices, "div", priceTag)[i]
         root_childsRU = [e.text for e in aa.children if e.name is not None]
         bb = findElementAU(req, "div", gamePriceTag)[i]
         root_childsAU = [e.text for e in bb.children if e.name is not None]
