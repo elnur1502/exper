@@ -115,8 +115,7 @@ def findElementBFB(divs, class_="c-group f-wrap-items context-list-page"):
     #print(respw.text + ("/n" * 3))  # output the html of the page
     #divs = soup.find_all('div', class_='m-channel-placement-item')[0:maximumGames]
     dives = soup13.find_all("div", class_="m-channel-placement-item")[0:maximumGames]
-    
-      for div in dives:
+    for div in dives:
         links = div.find('a').get('href')
         linkPage = 'https://coinmarketcap.com' + links
         linkPage.append(links)
