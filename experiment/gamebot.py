@@ -87,12 +87,39 @@ def findElementBF(reqw, el, thingOfFind):
 
     #print(respw.text + ("/n" * 3))  # output the html of the page
     #divs = soup.find_all('div', class_='m-channel-placement-item')[0:maximumGames]
-    divs = soup1.find_all("div", class_="m-channel-placement-item")[0:maximumGames]
+    divs = soup1.find_all("div", class_="c-group f-wrap-items context-list-page")[0:maximumGames]
     
-    return soup1.find_all("div", class_="m-channel-placement-item")
+    return soup1.find_all("div", class_="c-group f-wrap-items context-list-page")
 
 
-def findElementBFA(divs, class_="m-channel-placement-item"):
+def findElementBFB(divs, class_="c-group f-wrap-items context-list-page"):
+    header = {
+        'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+        'accept-encoding': 'gzip, deflate, br',
+        'accept-language': 'ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7',
+        'cache-control': 'no-cache',
+        'dnt': '1',
+        'pragma': 'no-cache',
+        'sec-fetch-mode': 'navigate',
+        'sec-fetch-site': 'none',
+        'sec-fetch-user': '?1',
+        'upgrade-insecure-requests': '1',
+        'user-agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.100 Safari/537.36'}  # Обеспечивает доступ к сайту
+
+    # Test
+    # reqw = "Metro Exodus - Sam's story"
+    
+    respw13 = requests.get(divs, timeout=10, headers=header)
+    soup13 = BeautifulSoup(respw13.text, 'lxml')
+
+    #print(respw.text + ("/n" * 3))  # output the html of the page
+    #divs = soup.find_all('div', class_='m-channel-placement-item')[0:maximumGames]
+    dives = soup13.find_all("div", class_="m-channel-placement-item")[0:maximumGames]
+    
+    return soup13.find_all("div", class_="m-channel-placement-item")
+
+
+def findElementBFA(dives, class_="m-channel-placement-item"):
     header = {
         'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
         'accept-encoding': 'gzip, deflate, br',
@@ -110,18 +137,18 @@ def findElementBFA(divs, class_="m-channel-placement-item"):
     # reqw = "Metro Exodus - Sam's story"
     
     
-    respw1 = requests.get(divs, timeout=10, headers=header)
-    soup1 = BeautifulSoup(respw1.text, 'lxml')
+    respw12 = requests.get(dives, timeout=10, headers=header)
+    soup12 = BeautifulSoup(respw12.text, 'lxml')
 
     #print(respw.text + ("/n" * 3))  # output the html of the page
     #links = links = divs.find("a").get("href")[0:maximumGames]
-    links = divs.find("a").get("href")[0:maximumGames]
+    links = soup12.find("a").get("href")[0:maximumGames]
     
-    return divs.find("a").get("href")
+    return soup12.find("a").get("href")
 
     
 
-def findElementAF(divs, links, href):
+def findElementAF("a", links, href):
     header = {
         'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
         'accept-encoding': 'gzip, deflate, br',
