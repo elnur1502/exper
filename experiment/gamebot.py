@@ -87,12 +87,12 @@ def findElementBF(reqw, el, thingOfFind):
 
     #print(respw.text + ("/n" * 3))  # output the html of the page
     #divs = soup.find_all('div', class_='m-channel-placement-item')[0:maximumGames].text
-    divs = soup1.find_all('div', class_='m-channel-placement-item')[0:maximumGames].text
+    divs = soup1.find_all("div", class_="m-channel-placement-item")[0:maximumGames].text
     
-    return soup1.find_all('div', class_='m-channel-placement-item')
+    return soup1.find_all("div", class_="m-channel-placement-item")
 
 
-def findElementBFA(divs, class_='m-channel-placement-item'):
+def findElementBFA(divs, class_="m-channel-placement-item"):
     header = {
         'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
         'accept-encoding': 'gzip, deflate, br',
@@ -114,14 +114,14 @@ def findElementBFA(divs, class_='m-channel-placement-item'):
     soup1 = BeautifulSoup(respw1.text, 'lxml')
 
     #print(respw.text + ("/n" * 3))  # output the html of the page
-    #divs = soup.find_all('div', class_='m-channel-placement-item')[0:maximumGames].text
-    links = divs.find('a').get('href')[0:maximumGames]
+    #links = links = divs.find("a").get("href")[0:maximumGames]
+    links = divs.find("a").get("href")[0:maximumGames]
     
-    return divs.find_all('a').get('href')
+    return divs.find("a").get("href")
 
     
 
-def findElementAF(req, links, thingOfFind):
+def findElementAF(divs, links, href):
     header = {
         'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
         'accept-encoding': 'gzip, deflate, br',
@@ -144,9 +144,9 @@ def findElementAF(req, links, thingOfFind):
 
     #print(respw.text + ("/n" * 3))  # output the html of the page
     #print(soup.find_all("div", id='ProductPrice_productPrice_PriceContainer').text)
-    prices = soup2.find_all("div", id='ProductPrice_productPrice_PriceContainer')[0:maximumGames].text
+    prices = soup2.find_all("div", id="ProductPrice_productPrice_PriceContainer")[0:maximumGames].text
 
-    return soup2.find_all("div", id='ProductPrice_productPrice_PriceContainer')
+    return soup2.find_all("div", id="ProductPrice_productPrice_PriceContainer")
 
 def findElementAU(reqw, el, thingOfFind):
     header = {
